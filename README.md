@@ -16,7 +16,7 @@ This repository consolidates the modules prototyped and tested in Google Colab i
 
 ### 1. Medicine invoice KIE — human-verified result
 
-![Three extracted medicine lines with reviewed values and total amount](assets/results/01-extraction-review.png)
+
 
 The Colab example extracted three medicine lines. After the operator corrected the second medicine name against the source document, the final reviewed result was:
 
@@ -31,19 +31,18 @@ The Colab example extracted three medicine lines. After the operator corrected t
 
 ### 2. Human review → approval → approved CSV
 
-![FastAPI human review and explicit approval followed by CSV export](assets/results/02-approval-export.png)
+
 
 The recorded flow reached `PENDING_REVIEW → REVIEWED → APPROVED`. Review, approval, and approved CSV export each returned **HTTP 200**. An attempted export **before** approval returned **HTTP 409** as intended. `ready_for_rpa` only became `true` after explicit approval.
 
 ### 3. RPA handoff → ERP simulator → no duplicate on retry
 
-![Approved CSV handoff into a local ERP simulator with idempotency and audit events](assets/results/03-rpa-handoff.png)
 
 The approved 3-row CSV generated a `PENDING` handoff job. The local worker changed the state to `SIMULATED`, wrote three rows to a **local SQLite ERP simulator**, then returned `ALREADY_SIMULATED` on retry without inserting duplicates. The recorded audit events were `HANDOFF_ACCEPTED` and `LOCAL_ERP_SIMULATED`. **No live ERP, UiPath, or Power Automate integration is claimed.**
 
 ### 4. Automated test evidence and boundaries
 
-![41 passing offline tests and features that remain unvalidated](assets/results/04-test-evidence.png)
+
 
 The package baseline reported **41/41 passing offline automated tests** plus a standalone **synthetic** end-to-end demo. The test suite mocks OCR/LLM calls and does not measure document accuracy across the full dataset.
 
@@ -51,7 +50,7 @@ The package baseline reported **41/41 passing offline automated tests** plus a s
 
 ### 5. Evidence viewer and document total check (synthetic document)
 
-![Review screen highlighting the OCR boxes behind row 2 and flagging a printed total that does not match the rows](assets/results/05-evidence-viewer.png)
+
 
 A real screenshot of the review UI on a **generated** document from the evaluation set (`eval/synthetic/med_04_dropped_row`). OCR missed row 3 entirely; every remaining row still balances on its own, but the printed total (137,000) does not match the sum of rows (122,000), so the document is blocked with `BLOCKED_TOTAL_MISMATCH`. Selecting a row draws the OCR boxes each value was read from on the stored source image.
 
@@ -301,7 +300,6 @@ This command fetches the approved CSV through the API, validates schema and arit
 To connect Power Automate Desktop / UiPath, implement the platform adapter behind an explicit approved-job boundary; see [RPA integration](docs/RPA_INTEGRATION.md).
 
 ## Observed validation findings (not a broad accuracy claim)
-
 The original Colab development run observed:
 
 - Router integration on **3 known samples:** all routed to the intended extractor; 1 real OCR call per image.
