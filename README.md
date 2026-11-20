@@ -169,6 +169,28 @@ The synthetic demo creates temporary SQLite files, inserts two **invented items*
 
 ## Quick start B — FastAPI server + local UI
 
+### 1-Click Unified Launcher (Recommended)
+
+Run both the FastAPI backend and the redesigned Streamlit Enterprise Console together with pre-populated demo documents:
+
+```powershell
+# Windows PowerShell
+.\launch_ui.ps1
+# or: python scripts/run_app.py
+```
+
+```bash
+# macOS / Linux
+python scripts/run_app.py
+```
+
+This starts:
+- **FastAPI Review API:** `http://127.0.0.1:8000` (API docs at `/docs`)
+- **Modern Web SPA:** `http://127.0.0.1:8000/dashboard` (instant browser interface with zero build step)
+- **Streamlit Enterprise Console:** `http://127.0.0.1:8501` (full split-screen visual inspection & review console)
+
+### Manual Setup & Environment Keys
+
 Generate a new API key. **Do not commit `.env`.**
 
 ```bash
@@ -192,9 +214,9 @@ $env:INVOICEFLOW_DB_PATH = ".\data\invoiceflow.sqlite3"
 invoiceflow serve
 ```
 
-Open **http://127.0.0.1:8000/docs** (interactive API documentation). `GET /health` is unauthenticated; all document endpoints require the `X-API-Key` header.
+Open **http://127.0.0.1:8000/docs** (interactive API documentation) or **http://127.0.0.1:8000/dashboard** (built-in web UI). `GET /health` is unauthenticated; all document endpoints require the `X-API-Key` header.
 
-For the optional UI, use another terminal with the **same** environment key:
+For the optional Streamlit UI, use another terminal with the **same** environment key:
 
 ```bash
 pip install -e '.[ui]'

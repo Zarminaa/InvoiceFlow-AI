@@ -24,11 +24,12 @@ from pathlib import Path
 from typing import Any, Callable, Iterator, Literal
 
 from fastapi import Depends, FastAPI, File, Header, HTTPException, UploadFile
-from fastapi.responses import Response
+from fastapi.responses import HTMLResponse, Response
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 from .evidence import build_evidence
 from .validation import EXPORT_COLUMNS, is_formula_like, is_placeholder_name, payload_sha256
+from .web_dashboard import get_dashboard_html
 
 MAX_UPLOAD_BYTES = 8 * 1024 * 1024
 MAX_ITEMS = 200
@@ -400,6 +401,11 @@ def create_app(*, db_path: str | None = None, api_key: str | None = None,
     @app.get("/health")
     def health():
         return {"status": "ok", "service": "invoiceflow-review", "version": "0.6.0"}
+
+    @app.get("/dashboard", response_class=HTMLResponse)
+    @app.get("/", response_class=HTMLResponse)
+    def web_dashboard():
+        return HTMLResponse(content=get_dashboard_html(), status_code=200)
 
     @app.post("/api/v1/documents/import", dependencies=[Depends(require_operator)], status_code=201)
     def import_document(payload: ImportPayload):
