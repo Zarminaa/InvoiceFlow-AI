@@ -1,6 +1,6 @@
 # InvoiceFlow AI
 
-**Vietnamese document intelligence · OCR-grounded KIE · Human-in-the-loop approval · RPA-ready handoff**
+**Document intelligence · OCR-grounded KIE · Human-in-the-loop approval · RPA-ready handoff**
 
 > **Status: portfolio / local-demo baseline, not production clinical software.** The extracted content is not a medical diagnosis. Do not process identifiable patient information without appropriate authority, de-identification, security controls, and compliance review. No real ERP or Power Automate/UiPath bot is included. A local SQLite *ERP simulator* demonstrates handoff safely.
 
