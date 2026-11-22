@@ -4,7 +4,7 @@
 
 > **Status: portfolio / local-demo baseline, not production clinical software.** The extracted content is not a medical diagnosis. Do not process identifiable patient information without appropriate authority, de-identification, security controls, and compliance review. No real ERP or Power Automate/UiPath bot is included. A local SQLite *ERP simulator* demonstrates handoff safely.
 
-InvoiceFlow AI takes an image of a Vietnamese medication invoice or healthcare payment receipt and produces **structured, reviewable data**. A conservative document router selects a layout-specific extractor. Unknown layouts can optionally use an LLM **only after explicit opt-in** and an appropriate privacy review. All extracted data must pass through manual review and explicit approval before CSV export. A local RPA worker proves **idempotent handoff**.
+InvoiceFlow AI takes an image of a medication invoice or healthcare payment receipt and produces **structured, reviewable data**. A conservative document router selects a layout-specific extractor. Unknown layouts can optionally use an LLM **only after explicit opt-in** and an appropriate privacy review. All extracted data must pass through manual review and explicit approval before CSV export. A local RPA worker proves **idempotent handoff**.
 
 This repository consolidates the modules prototyped and tested in Google Colab into a reusable Python package, FastAPI backend, optional Streamlit interface, regression tests, CI workflow, and developer/agent documentation.
 
