@@ -392,4 +392,4 @@ git commit -m "docs: improve project documentation"
 git push
 ```
 
-Suggested GitHub description: **"Vietnamese invoice & medical receipt intelligence with PaddleOCR, OCR-grounded LLM KIE, FastAPI human review and idempotent RPA handoff (local ERP simulation)."** Suggested topics: `python`, `fastapi`, `paddleocr`, `document-ai`, `llm`, `rpa`, `human-in-the-loop`, `vietnamese-ocr`.
+
